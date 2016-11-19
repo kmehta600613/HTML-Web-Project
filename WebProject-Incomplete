@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> McMaster STEM Fellowship </title>
+<style>
+h1 {
+	background-color:lime
+}
+</style>
+<SCRIPT LANGUAGE="JavaScript">
+var interval = 5; // delay between rotating images (in seconds)
+var random_display = 1; // 0 = no, 1 = yes
+interval *= 1000;
+
+var image_index = 0;
+image_list = new Array();
+image_list[image_index++] = new imageItem("https://scontent-yyz1-1.xx.fbcdn.net/v/t1.0-0/s480x480/14034720_1657471284513467_7154213358425610374_n.jpg?oh=11f2414dd6cf20a9591cfac65b441241&oe=587417B6");
+image_list[image_index++] = new imageItem("https://scontent-yyz1-1.xx.fbcdn.net/v/t1.0-9/14632978_1677887489138513_6061901350158877646_n.jpg?oh=86ad1ea04f297a49f78329aafa6e6f52&oe=58632901");
+image_list[image_index++] = new imageItem("https://scontent-yyz1-1.xx.fbcdn.net/v/t1.0-0/s480x480/13241224_1620748401519089_8947840653802772626_n.jpg?oh=45a593f0dbb5d6098f797a00b831dc72&oe=58AA0D85");
+image_list[image_index++] = new imageItem("https://scontent-yyz1-1.xx.fbcdn.net/v/t1.0-9/13600235_1640856212841641_6032180624052221192_n.jpg?oh=d10118f5ad48cdc2b7acd60f010da970&oe=589E6EEE");
+var number_of_image = image_list.length;
+function imageItem(image_location) {
+this.image_item = new Image();
+this.image_item.src = image_location;
+}
+function get_ImageItemLocation(imageObj) {
+return(imageObj.image_item.src)
+}
+function generate(x, y) {
+var range = y - x + 1;
+return Math.floor(Math.random() * range) + x;
+}
+function getNextImage() {
+if (random_display) {
+image_index = generate(0, number_of_image-1);
+}
+else {
+image_index = (image_index+1) % number_of_image;
+}
+var new_image = get_ImageItemLocation(image_list[image_index]);
+return(new_image);
+}
+function rotateImage(place) {
+var new_image = getNextImage();
+document[place].src = new_image;
+var recur_call = "rotateImage('"+place+"')";
+setTimeout(recur_call, interval);
+}
+//  End -->
+</script>
+</head>
+<body OnLoad="rotateImage('rImage')">
+<h1 style="font-family:courier;">McMaster STEM Fellowship</h1>
+<center>
+<img name="rImage" src="https://scontent-yyz1-1.xx.fbcdn.net/v/t1.0-0/s480x480/14034720_1657471284513467_7154213358425610374_n.jpg?oh=11f2414dd6cf20a9591cfac65b441241&oe=587417B6" width=50% height=50%>
+</center>
+<p style="text-align:left;"> STEM Fellowship is a student run, non-profit organization that connects and empowers young innovators. 
+    We believe in the capabilities of youth, and cultivate their potential by fostering a community of driven
+	, like-minded individuals engaging in scholarly discussion and research. We thereby enable students to 
+	learn collaboratively, express their passion and love for science, and expand the scope of human knowledge 
+	through scientific, multidisciplinary inquiry. As a national student-run organization, STEM Fellowship has 
+	brought together like-minded individuals from high schools and universities in a plethora of fields, including
+	Computer Science, Physics, Engineering, and the Biological Sciences. With large projects and events happening 
+	every year, including the publication of a scholarly journal bi-annually and the Big Data Challenge aimed to 
+	expose high school students to data analysis, STEM Fellowship has certainly established itself as a valuable 
+	means for students to further enrich their passion in the STEM fields. </p>
+<p align=right>
+
+</body>
+
+</html>
